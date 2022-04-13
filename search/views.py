@@ -1,5 +1,8 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+
+from search import form
+from search.form import AddForm
 from search.models import Search
 
 
@@ -20,9 +23,26 @@ def home(request):
     return render(request, "search/home.html", context=context)
 
 def add(request):
-    return render(request, 'search/add.html', {'posts':posts})
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect(home)
+            except:
+                form.add_error(None, 'eror')
+    else:
+        form = AddForm()
+        return render(request, 'search/add.html', {'form':form})
+
+
+
+
+
+
 
 def info(request):
+    posts = Search.objects.all()
     return render(request, 'search/info.html', {'posts':posts})
 
 def exit(request):

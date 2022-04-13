@@ -1,6 +1,6 @@
 {% extends 'search/home.html' %}
 
-
+<div {overfow : hidden}>
   {% block content %}
   <ul>
   {% for p in posts %}
@@ -11,5 +11,5 @@
     {% endfor %}
   </ul>
   {% endblock %}
-
+</div>
 

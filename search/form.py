@@ -1,8 +1,8 @@
 from django import forms
 from .models import *
 
-class AddPostForm(forms.ModelForm):
+class AddForm(forms.ModelForm):
     class Meta:
-        model= Search
-        fields= '__all__'
+        model = Search
+        fields = ['title', 'content']
 
