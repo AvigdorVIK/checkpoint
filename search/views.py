@@ -15,7 +15,7 @@ posts = Search.objects.all()
 def home(request):
     context = {
         "title": 'menu',
-         "menu": 'menu' ,
+         "menu": 'menu',
         "posts":'posts',
 
     }
@@ -28,7 +28,7 @@ def add(request):
         if form.is_valid():
             try:
                 form.save()
-                return redirect(home)
+                return redirect(info)
             except:
                 form.add_error(None, 'eror')
     else:
